@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<th:block th:insert="fragments/app :: head"></th:block>
+</head>
+<body>
+	<th:block th:insert="fragments/header :: header"></th:block>
+
+	<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content">
+			<div class="container-fluid">
+				<div class="card shadow my-4">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">従業員詳細</h6>
+					</div>
+					<div class="card-body" th:object="${employee}">
+						<div class="table-responsive">
+							<div class="form-group">
+								<label for="name">名前</label>
+								<input type="text" class="form-control" th:field="*{name}" disabled>
+							</div>
+
+							<div class="form-group">
+								<label for="code">従業員番号</label>
+								<input type="number" class="form-control" th:field="*{code}" disabled>
+							</div>
+
+							<div class="form-group">
+								<label for="password">パスワード</label>
+								<input type="text" class="form-control" th:field="*{password}" disabled>
+							</div>
+						</div>
+					</div>
+				</div>
+				<p><a th:href="@{/employees/edit?(id=${employee.id})}">編集する</a></p>
+			</div>
+		</div>
+	</div>
+
+	<th:block th:insert="fragments/footer :: footer"></th:block>
+
+	<th:block th:insert="fragments/app :: scripts"></th:block>
+</body>
+</html>

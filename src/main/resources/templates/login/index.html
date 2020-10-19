@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymrleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<th:block th:insert="fragments/app :: head"></th:block>
+</head>
+<body>
+	<th:block th:insert="fragments/header :: header"></th:block>
+
+	<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content">
+			<div class="content-fluid">
+				<div class="card shadow my-4">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">ログイン画面</h6>
+					</div>
+
+					<div th:if="${flash != null}" class="alert alert-danger">
+						<p th:text="${flash}"></p>
+					</div>
+
+					<form th:action="@{/login}" th:object="${employee}" method="post">
+						<div class="card-body">
+							<div class="table-responsive">
+								<div class="form-group">
+									<label for="code">従業員番号</label>
+									<input type="number" class="form-control" th:field="*{code}">
+								</div>
+
+								<div class="form-group">
+									<label for="password">パスワード</label>
+									<input type="password" class="form-control" th:field="*{password}">
+								</div>
+
+								<hr class="sidebar-divinder my-4">
+
+								<button class="btn btn-primary btn-block col-md-4">
+									<i class="fas fa-edit fa-fw"></i>
+									<span class="text">ログイン</span>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<th:block th:insert="fragments/footer :: footer"></th:block>
+
+	<th:block th:insert="fragments/app :: scripts"></th:block>
+</body>
+</html>

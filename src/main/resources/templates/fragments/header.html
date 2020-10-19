@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<th:block th:fragment="header">
+		<nav class="navbar navbar-expand-md navbar-light bg-light">
+			<a class="navbar-brand" href="@{/}">日報管理システム</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNav4">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/employees/index}">従業員情報</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/reports/index}">日報情報</a>
+					</li>
+				</ul>
+
+				<ul class="navbar-nav">
+					<li th:if="${session.login_employee != null}" class="nav-item">
+						<a class="nav-link" href="#" th:text="${session.login_employee.name}"></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/login}">ログイン</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/logout}">ログアウト</a>
+					</li>
+				</ul>
+
+			</div>
+		</nav>
+	</th:block>
+</body>
+</html>

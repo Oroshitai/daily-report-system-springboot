@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<th:block th:insert="fragments/app :: head"></th:block>
+</head>
+<body>
+	<th:block th:insert="fragments/header :: header"></th:block>
+
+	<div id="content-wrapper" class="d-flex flex-column">
+		<div id="contet">
+			<div class="container-fluid">
+
+			<p class="text-danger" th:if="${flash != null}" th:text="${flash}"></p>
+
+				<div class="card shadow my-4">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">日報一覧</h6>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<div th:if="${reports.size() == 0}">
+								該当データがありません
+							</div>
+							<table class="table table-bordered" th:if="${reports.size() > 0}">
+								<thead>
+									<tr>
+										<th>氏名</th>
+										<th>日付</th>
+										<th>タイトル</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="report : ${reports}" th:object="${report}">
+										<td th:text="*{employee.name}"></td>
+										<td th:text="*{report_date}"></td>
+										<td th:text="*{title}"></td>
+										<td><a th:href="@{/reports/show?(id=*{id})}">詳細表示</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<p><a th:href="@{/reports/new}">日報新規登録</a></p>
+			</div>
+		</div>
+	</div>
+
+	<th:block th:insert="fragments/footer :: footer"></th:block>
+
+	<th:block th:insert="fragments/app :: scripts"></th:block>
+</body>
+</html>

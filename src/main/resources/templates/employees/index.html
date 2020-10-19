@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<th:block th:insert="fragments/app :: head"></th:block>
+</head>
+<body>
+	<div id="wrapper">"
+		<th:block th:insert="fragments/header :: header"></th:block>
+
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="contet">
+				<div class="container-fluid">
+
+				<p class="text-danger" th:if="${flash != null}" th:text="${flash}"></p>
+
+					<div class="card shadow my-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">従業員一覧</h6>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<div th:if="${employees.size() == 0}">
+									該当データがありません
+								</div>
+								<table class="table table-bordered" th:if="${employees.size() > 0}">
+									<thead>
+										<tr>
+											<th>従業員番号</th>
+											<th>名前</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="employee : ${employees}" th:object="${employee}">
+											<td th:text="*{code}"></td>
+											<td th:text="*{name}"></td>
+											<td><a th:href="@{/employees/show?(code=*{code})}">詳細表示</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<p><a th:href="@{/employees/new}">従業員新規登録</a></p>
+				</div>
+			</div>
+		</div>
+
+		<th:block th:insert="fragments/footer :: footer"></th:block>
+	</div>
+
+
+	<th:block th:insert="fragments/app :: scripts"></th:block>
+</body>
+</html>

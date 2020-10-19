@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmllns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<th:block th:insert="fragments/app :: head"></th:block>
+</head>
+<body>
+	<th:block th:insert="fragments/header :: header"></th:block>
+
+
+	<div th:if="${flash != null}" class="alert alert-success" role="alert">
+		<p th:text="${flash}"></p>
+	</div>
+
+	<h2>日報管理システムへようこそ</h2>
+
+	<th:block th:insert="fragments/app :: scripts"></th:block>
+</body>
+</html>

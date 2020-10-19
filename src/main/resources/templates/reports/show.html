@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<th:block th:insert="fragments/app :: head"></th:block>
+</head>
+<body>
+	<th:block th:insert="fragments/header :: header"></th:block>
+
+	<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content">
+			<div class="content-fluid" th:object="${report}">
+				<div class="card shadow my-4">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">日報登録</h6>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<input type="hidden" th:field="*{id}">
+
+							<div class="form-group">
+								<label for="report_date">日付</label>
+								<input type="date" class="form-control" th:errorclass="is-invalid" th:field="*{report_date}" disabled>
+							</div>
+
+							<div class="form-group">
+								<label for="name">名前</label>
+								<input type="text" class="form-control" th:field="*{employee.name}" disabled>
+							</div>
+
+							<div class="form-group">
+								<label for="title">タイトル</label>
+								<input type="text" class="form-control" th:field="*{title}" disabled>
+							</div>
+
+							<div class="form-group">
+								<label for="content">内容</label>
+								<textarea class="form-control" th:field="*{content}" disabled></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<p><a th:href="@{/reports/edit?(id=*{id})}">編集する</a></p>
+			</div>
+		</div>
+	</div>
+
+
+
+	<th:block th:insert="fragments/footer :: footer"></th:block>
+
+	<th:block th:insert="fragments/app :: scripts"></th:block>
+</body>
+</html>
